@@ -1,0 +1,22 @@
+{
+  "name": "ajay-aj-portfolio",
+  "version": "1.0.0",
+  "description": "Ajay A J - Software Engineer & Full-Stack AI Engineer Portfolio",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [
+    "portfolio",
+    "software-engineer",
+    "ai-engineer",
+    "django",
+    "react",
+    "rag",
+    "whisper",
+    "facenet"
+  ],
+  "author": "Ajay A J <ajajay2805@gmail.com>",
+  "license": "MIT"
+}

@@ -1,0 +1,1024 @@
+/* 
+   AJAY A J - SOFTWARE & AI ENGINEER PORTFOLIO
+   High-performance, futuristic glassmorphic styling
+   Optimized for 100% Responsive Layouts across Mobile, Tablet, Laptop, and 4K Displays
+   Dual Theme Support: Sleek Obsidian Dark Mode & Luxury Crisp White/Light Mode
+*/
+
+:root {
+  /* DARK THEME (DEFAULT) */
+  --bg-primary: #07090e;
+  --bg-secondary: #0c101c;
+  --bg-card: rgba(15, 23, 42, 0.7);
+  --bg-card-hover: rgba(24, 34, 60, 0.85);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(99, 102, 241, 0.5);
+  --accent-cyan: #06b6d4;
+  --accent-blue: #3b82f6;
+  --accent-indigo: #6366f1;
+  --accent-purple: #a855f7;
+  --accent-emerald: #10b981;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --nav-bg: rgba(7, 9, 14, 0.85);
+  --drawer-bg: #0a0e19;
+  --card-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.5);
+}
+
+/* WHITE / LIGHT THEME */
+body.light-theme {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: #ffffff;
+  --border-color: rgba(15, 23, 42, 0.1);
+  --border-focus: rgba(99, 102, 241, 0.6);
+  --text-main: #0f172a;
+  --text-muted: #334155;
+  --text-dim: #64748b;
+  --nav-bg: rgba(255, 255, 255, 0.88);
+  --drawer-bg: #ffffff;
+  --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 2px 8px -2px rgba(0, 0, 0, 0.04);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+body.light-theme ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Hide scrollbar utility for horizontal scroll tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Typography elements */
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+.font-display {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Fluid responsive hero heading */
+.hero-heading {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  font-size: clamp(2.1rem, 4.2vw + 0.8rem, 4.2rem);
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
+}
+
+/* Section titles */
+.section-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  font-size: clamp(1.75rem, 3vw + 0.5rem, 2.75rem);
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--card-shadow);
+}
+
+.glass-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -8px rgba(99, 102, 241, 0.18), var(--card-shadow);
+}
+
+.glass-nav {
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* 3D TILT EFFECT (Clean - no white glare) */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.25s ease-out;
+  will-change: transform;
+  position: relative;
+}
+
+/* Gradient Texts */
+.gradient-text-ai {
+  background: linear-gradient(135deg, #06b6d4 0%, #6366f1 50%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-amber {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-cyan {
+  background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Ambient Radial Background Glows */
+.ambient-glow-1 {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(750px, 90vw);
+  height: min(500px, 60vh);
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 70%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body.light-theme .ambient-glow-1 {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.10) 0%, rgba(6, 182, 212, 0.04) 50%, transparent 70%);
+}
+
+.ambient-glow-2 {
+  position: absolute;
+  top: 40%;
+  right: -10%;
+  width: min(600px, 80vw);
+  height: min(600px, 60vh);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(99, 102, 241, 0.04) 50%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-glow-3 {
+  position: absolute;
+  bottom: 10%;
+  left: -10%;
+  width: min(600px, 80vw);
+  height: min(600px, 60vh);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(16, 185, 129, 0.04) 50%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Canvas Background */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Terminal Window (Authentic dark shell in both dark and light modes) */
+.terminal-window {
+  background: #090d16;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+body.light-theme .terminal-window {
+  background: #0d1322;
+  border-color: rgba(15, 23, 42, 0.2);
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.25);
+}
+
+.terminal-header {
+  background: #0f1524;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #eab308; }
+.dot-green { background: #22c55e; }
+
+/* Badges */
+.badge-tech {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+body.light-theme .badge-tech {
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  color: #334155;
+}
+
+.badge-tech:hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+body.light-theme .badge-tech:hover {
+  color: #4338ca;
+}
+
+/* Recruiter HUD Drawer */
+.recruiter-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  background: var(--drawer-bg);
+  border-left: 1px solid var(--border-color);
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+  box-shadow: -15px 0 45px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+}
+
+.recruiter-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.drawer-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Command Palette Modal */
+.cmd-palette-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 110;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12vh 16px 16px 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.cmd-palette-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cmd-box {
+  width: 100%;
+  max-width: 560px;
+  background: var(--drawer-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transform: scale(0.96);
+  transition: transform 0.2s ease;
+}
+
+.cmd-palette-modal.open .cmd-box {
+  transform: scale(1);
+}
+
+/* Voice Waveform animation */
+.waveform-bar {
+  width: 3px;
+  background: var(--accent-cyan);
+  border-radius: 2px;
+  animation: wave 1s ease-in-out infinite alternate;
+}
+.waveform-bar:nth-child(1) { height: 12px; animation-delay: 0.1s; }
+.waveform-bar:nth-child(2) { height: 24px; animation-delay: 0.3s; }
+.waveform-bar:nth-child(3) { height: 16px; animation-delay: 0.2s; }
+.waveform-bar:nth-child(4) { height: 28px; animation-delay: 0.5s; }
+.waveform-bar:nth-child(5) { height: 10px; animation-delay: 0.4s; }
+.waveform-bar:nth-child(6) { height: 22px; animation-delay: 0.2s; }
+.waveform-bar:nth-child(7) { height: 14px; animation-delay: 0.6s; }
+
+@keyframes wave {
+  0% { transform: scaleY(0.4); opacity: 0.6; }
+  100% { transform: scaleY(1.3); opacity: 1; }
+}
+
+/* Control buttons */
+.sound-btn, .theme-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  transition: all 0.2s;
+}
+body.light-theme .sound-btn, 
+body.light-theme .theme-btn {
+  background: rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  color: #334155;
+}
+.sound-btn:hover, .theme-btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+body.light-theme .sound-btn:hover,
+body.light-theme .theme-btn:hover {
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.3);
+}
+.sound-btn.active {
+  color: #22d3ee;
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+/* Computer Vision Laser Scanner */
+.vision-grid {
+  background-image: 
+    linear-gradient(rgba(6, 182, 212, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.09) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+@keyframes scan-laser {
+  0% { top: 4%; opacity: 0.7; }
+  50% { top: 92%; opacity: 1; }
+  100% { top: 4%; opacity: 0.7; }
+}
+
+.scan-laser-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 5%, #06b6d4 30%, #22d3ee 50%, #06b6d4 70%, transparent 95%);
+  box-shadow: 0 0 14px 3px rgba(6, 182, 212, 0.9);
+  animation: scan-laser 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+/* Targeting Reticle Corners */
+.reticle-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: #22d3ee;
+}
+.reticle-tl { top: -2px; left: -2px; border-top: 2px solid; border-left: 2px solid; }
+.reticle-tr { top: -2px; right: -2px; border-top: 2px solid; border-right: 2px solid; }
+.reticle-bl { bottom: -2px; left: -2px; border-bottom: 2px solid; border-left: 2px solid; }
+.reticle-br { bottom: -2px; right: -2px; border-bottom: 2px solid; border-right: 2px solid; }
+
+/* Webhook Pipeline Packet Animator */
+@keyframes packet-glide {
+  0% { left: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+.packet-pulse {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 10px #06b6d4, 0 0 20px #6366f1;
+  transform: translate(-50%, -50%);
+}
+
+.anim-packet {
+  animation: packet-glide 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Cyber Text Cursor */
+.cyber-cursor::after {
+  content: '▋';
+  display: inline-block;
+  margin-left: 3px;
+  color: var(--accent-cyan);
+  animation: blink 0.9s step-start infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Floating animation */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float-slow {
+  animation: float-gentle 4.5s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .hero-heading {
+    line-height: 1.18;
+  }
+  .recruiter-drawer {
+    max-width: 100%;
+  }
+}
+
+/* ==========================================================================
+   COMPLETE WHITE / LIGHT THEME ARCHITECTURE
+   Transforms every section, background, text, card, drawer, and input into a
+   pristine, high-contrast, modern executive porcelain theme.
+   ========================================================================== */
+
+/* 1. Global Backgrounds & Root */
+body.light-theme {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+body.light-theme main,
+body.light-theme section {
+  background-color: transparent !important;
+}
+
+/* Specific section overrides */
+body.light-theme section.bg-slate-950\/60,
+body.light-theme section.bg-slate-950\/70,
+body.light-theme section#terminal-section,
+body.light-theme section.bg-\[\#080c16\],
+body.light-theme footer,
+body.light-theme footer.bg-\[\#06080d\] {
+  background-color: #f1f5f9 !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 2. Glassmorphic Panels & Surface Cards */
+body.light-theme .glass-panel,
+body.light-theme .glass-card {
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.02) !important;
+}
+
+body.light-theme .glass-card:hover {
+  background: #ffffff !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  box-shadow: 0 16px 32px -8px rgba(99, 102, 241, 0.14), 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* 3. Hardcoded Tailwind Dark Background Overrides */
+body.light-theme .bg-slate-950,
+body.light-theme .bg-slate-900,
+body.light-theme .bg-slate-950\/80,
+body.light-theme .bg-slate-950\/90,
+body.light-theme .bg-slate-950\/95,
+body.light-theme [class*="bg-slate-950"] {
+  background-color: #ffffff !important;
+}
+
+body.light-theme .bg-slate-900\/50,
+body.light-theme .bg-slate-900\/60,
+body.light-theme .bg-slate-900\/70,
+body.light-theme .bg-slate-900\/80,
+body.light-theme [class*="bg-slate-900"] {
+  background-color: #f8fafc !important;
+}
+
+body.light-theme .bg-slate-800,
+body.light-theme .bg-slate-800\/50,
+body.light-theme .bg-slate-800\/60,
+body.light-theme .bg-slate-800\/80,
+body.light-theme [class*="bg-slate-800"] {
+  background-color: #f1f5f9 !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+body.light-theme .hover\:bg-slate-700:hover,
+body.light-theme .hover\:bg-slate-800\/80:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+body.light-theme .h-1.bg-slate-800 {
+  background-color: #cbd5e1 !important;
+}
+
+/* Fin360 Card Gradient in Light Mode */
+body.light-theme .from-slate-900.to-\[\#0c101c\] {
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+  border-color: rgba(14, 165, 233, 0.3) !important;
+}
+
+/* 3b. Dark Colored Badges & Tinted Panels -> Clean Pastel Light Mode Surfaces */
+body.light-theme [class*="bg-cyan-950"],
+body.light-theme [class*="bg-cyan-900"] {
+  background-color: #ecfeff !important;
+  border-color: rgba(6, 182, 212, 0.35) !important;
+  color: #0e7490 !important;
+}
+
+body.light-theme [class*="bg-emerald-950"],
+body.light-theme [class*="bg-emerald-900"] {
+  background-color: #ecfdf5 !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  color: #047857 !important;
+}
+
+body.light-theme [class*="bg-indigo-950"],
+body.light-theme [class*="bg-indigo-900"] {
+  background-color: #eef2ff !important;
+  border-color: rgba(99, 102, 241, 0.32) !important;
+  color: #4338ca !important;
+}
+
+body.light-theme [class*="bg-purple-950"],
+body.light-theme [class*="bg-purple-900"] {
+  background-color: #faf5ff !important;
+  border-color: rgba(168, 85, 247, 0.32) !important;
+  color: #7e22ce !important;
+}
+
+body.light-theme [class*="bg-pink-950"],
+body.light-theme [class*="bg-pink-900"] {
+  background-color: #fdf2f8 !important;
+  border-color: rgba(236, 72, 153, 0.32) !important;
+  color: #be185d !important;
+}
+
+body.light-theme [class*="bg-amber-950"],
+body.light-theme [class*="bg-amber-900"],
+body.light-theme .bg-amber-500\/10 {
+  background-color: #fffbeb !important;
+  border-color: rgba(217, 119, 6, 0.35) !important;
+  color: #b45309 !important;
+}
+
+body.light-theme .bg-amber-500\/10:hover {
+  background-color: #fef3c7 !important;
+  border-color: rgba(217, 119, 6, 0.55) !important;
+}
+
+body.light-theme .bg-blue-600\/10 {
+  background-color: #eff6ff !important;
+  border-color: rgba(37, 99, 235, 0.3) !important;
+}
+
+body.light-theme .bg-blue-600\/10:hover {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+/* 4. Text & Typography Overrides (Deep charcoal & saturated accents for 100% contrast) */
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3,
+body.light-theme h4,
+body.light-theme h5,
+body.light-theme h6,
+body.light-theme .hero-heading,
+body.light-theme .section-title,
+body.light-theme .text-white,
+body.light-theme .text-slate-100,
+body.light-theme .text-slate-200,
+body.light-theme .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+/* Keep crisp white text on solid & gradient primary action buttons */
+body.light-theme .bg-indigo-600,
+body.light-theme .bg-indigo-600\/80,
+body.light-theme .bg-blue-600,
+body.light-theme .hover\:bg-blue-600:hover,
+body.light-theme .hover\:bg-indigo-600:hover,
+body.light-theme [class*="from-cyan-500"],
+body.light-theme [class*="from-pink-500"] {
+  color: #ffffff !important;
+}
+
+body.light-theme .bg-indigo-600 *,
+body.light-theme .bg-indigo-600\/80 *,
+body.light-theme .bg-blue-600 *,
+body.light-theme .hover\:bg-blue-600:hover *,
+body.light-theme .hover\:bg-indigo-600:hover *,
+body.light-theme [class*="from-cyan-500"] *,
+body.light-theme [class*="from-pink-500"] * {
+  color: #ffffff !important;
+}
+
+body.light-theme p,
+body.light-theme .text-slate-300 {
+  color: #334155 !important;
+}
+
+body.light-theme .text-slate-400 {
+  color: #475569 !important;
+}
+
+body.light-theme .text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Calibrate pastel accent text colors (300/400) for bright white surfaces */
+body.light-theme .text-cyan-300,
+body.light-theme .text-cyan-400,
+body.light-theme .text-cyan-400\/80 {
+  color: #0e7490 !important;
+}
+
+body.light-theme .text-indigo-300,
+body.light-theme .text-indigo-400 {
+  color: #4338ca !important;
+}
+
+body.light-theme .text-purple-300,
+body.light-theme .text-purple-400 {
+  color: #7e22ce !important;
+}
+
+body.light-theme .text-emerald-300,
+body.light-theme .text-emerald-400 {
+  color: #047857 !important;
+}
+
+body.light-theme .text-amber-300,
+body.light-theme .text-amber-400,
+body.light-theme .text-yellow-400 {
+  color: #b45309 !important;
+}
+
+body.light-theme .text-pink-300,
+body.light-theme .text-pink-400 {
+  color: #be185d !important;
+}
+
+body.light-theme .text-blue-300,
+body.light-theme .text-blue-400 {
+  color: #1d4ed8 !important;
+}
+
+body.light-theme .text-red-400 {
+  color: #dc2626 !important;
+}
+
+/* 5. Gradient Texts Calibrated for White Background */
+body.light-theme .gradient-text-ai {
+  background: linear-gradient(135deg, #0284c7 0%, #4f46e5 50%, #7e22ce 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+body.light-theme .gradient-text-cyan {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+body.light-theme .gradient-text-amber {
+  background: linear-gradient(135deg, #d97706 0%, #ea580c 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* 6. Border Overrides */
+body.light-theme .border-slate-800,
+body.light-theme .border-slate-800\/80,
+body.light-theme .border-slate-700,
+body.light-theme .border-slate-700\/60,
+body.light-theme .border-slate-700\/80,
+body.light-theme .border-slate-900,
+body.light-theme [class*="border-slate-800"],
+body.light-theme [class*="border-slate-700"] {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 7. Badges and Chips */
+body.light-theme .badge-tech {
+  background: #f1f5f9 !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  color: #1e293b !important;
+}
+
+body.light-theme .badge-tech:hover {
+  background: rgba(99, 102, 241, 0.12) !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  color: #4338ca !important;
+}
+
+body.light-theme [data-skill-filter]:not(.bg-indigo-600),
+body.light-theme [data-hrms-tab]:not(.bg-indigo-600) {
+  background-color: #f1f5f9 !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  color: #334155 !important;
+}
+
+body.light-theme [data-skill-filter]:not(.bg-indigo-600):hover,
+body.light-theme [data-hrms-tab]:not(.bg-indigo-600):hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+body.light-theme [data-skill-filter].bg-indigo-600,
+body.light-theme [data-hrms-tab].bg-indigo-600 {
+  background-color: #4f46e5 !important;
+  border-color: #4338ca !important;
+  color: #ffffff !important;
+}
+
+/* 8. Top Navigation & Mobile Menu */
+body.light-theme .glass-nav {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.light-theme .glass-nav nav a {
+  color: #334155 !important;
+}
+body.light-theme .glass-nav nav a:hover {
+  color: #2563eb !important;
+}
+
+body.light-theme #mobile-menu {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+body.light-theme #mobile-menu a {
+  color: #1e293b !important;
+}
+body.light-theme #mobile-menu a:hover {
+  background-color: #f1f5f9 !important;
+  color: #2563eb !important;
+}
+
+/* 9. Interactive Form Inputs & Button Controls */
+body.light-theme input,
+body.light-theme textarea {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.15) !important;
+  color: #0f172a !important;
+}
+body.light-theme input:focus,
+body.light-theme textarea:focus {
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12) !important;
+}
+body.light-theme input::placeholder,
+body.light-theme textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+body.light-theme .sound-btn,
+body.light-theme .theme-btn,
+body.light-theme #cmd-palette-btn,
+body.light-theme #mobile-menu-btn {
+  background: rgba(15, 23, 42, 0.05) !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  color: #334155 !important;
+}
+
+body.light-theme .sound-btn:hover,
+body.light-theme .theme-btn:hover,
+body.light-theme #cmd-palette-btn:hover,
+body.light-theme #mobile-menu-btn:hover {
+  background: rgba(15, 23, 42, 0.09) !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.25) !important;
+}
+
+body.light-theme .theme-btn.active-light {
+  background: rgba(79, 70, 229, 0.1) !important;
+  border-color: rgba(79, 70, 229, 0.35) !important;
+  color: #4338ca !important;
+}
+
+/* 10. Recruiter Drawer & Command Palette */
+body.light-theme .recruiter-drawer,
+body.light-theme .cmd-box {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15) !important;
+}
+
+body.light-theme .recruiter-drawer .bg-slate-900\/80,
+body.light-theme .recruiter-drawer .bg-slate-900\/60,
+body.light-theme .recruiter-drawer .bg-slate-900 {
+  background-color: #f8fafc !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 11. Developer Terminal Shell (Preserves authentic dark code editor syntax) */
+body.light-theme .terminal-window {
+  background: #0d1322 !important;
+  border: 1px solid rgba(15, 23, 42, 0.18) !important;
+  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.22) !important;
+}
+body.light-theme .terminal-window .terminal-header {
+  background: #111827 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+body.light-theme .terminal-window #terminal-output,
+body.light-theme .terminal-window .bg-slate-900,
+body.light-theme .terminal-window .bg-slate-950,
+body.light-theme .terminal-window [class*="bg-slate-900"],
+body.light-theme .terminal-window [class*="bg-slate-950"] {
+  background-color: #0d1322 !important;
+}
+body.light-theme .terminal-window [class*="border-slate-800"] {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+body.light-theme .terminal-window .text-white {
+  color: #f8fafc !important;
+}
+body.light-theme .terminal-window .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+body.light-theme .terminal-window .text-slate-400 {
+  color: #94a3b8 !important;
+}
+body.light-theme .terminal-window .text-slate-500 {
+  color: #64748b !important;
+}
+body.light-theme .terminal-window .text-cyan-300 {
+  color: #67e8f9 !important;
+}
+body.light-theme .terminal-window .text-cyan-400 {
+  color: #22d3ee !important;
+}
+body.light-theme .terminal-window .text-indigo-300 {
+  color: #a5b4fc !important;
+}
+body.light-theme .terminal-window .text-indigo-400 {
+  color: #818cf8 !important;
+}
+body.light-theme .terminal-window .text-purple-300 {
+  color: #d8b4fe !important;
+}
+body.light-theme .terminal-window .text-purple-400 {
+  color: #c084fc !important;
+}
+body.light-theme .terminal-window .text-emerald-300 {
+  color: #6ee7b7 !important;
+}
+body.light-theme .terminal-window .text-emerald-400 {
+  color: #34d399 !important;
+}
+body.light-theme .terminal-window .text-amber-300 {
+  color: #fcd34d !important;
+}
+body.light-theme .terminal-window .text-amber-400 {
+  color: #fbbf24 !important;
+}
+body.light-theme .terminal-window .text-pink-300 {
+  color: #f9a8d4 !important;
+}
+body.light-theme .terminal-window .text-pink-400 {
+  color: #f472b6 !important;
+}
+body.light-theme .terminal-window .text-blue-400 {
+  color: #60a5fa !important;
+}
+body.light-theme .terminal-window .bg-emerald-950\/60 {
+  background-color: rgba(6, 78, 59, 0.6) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+body.light-theme .terminal-window .bg-emerald-900\/60 {
+  background-color: rgba(6, 78, 59, 0.6) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+body.light-theme .terminal-window .bg-cyan-900\/60 {
+  background-color: rgba(22, 78, 99, 0.6) !important;
+  border-color: rgba(6, 182, 212, 0.35) !important;
+}
+body.light-theme .terminal-window .bg-indigo-900\/60 {
+  background-color: rgba(49, 46, 129, 0.6) !important;
+  border-color: rgba(99, 102, 241, 0.35) !important;
+}
+body.light-theme .terminal-window .bg-indigo-600\/80 {
+  background-color: rgba(79, 70, 229, 0.9) !important;
+  color: #ffffff !important;
+}
+body.light-theme .terminal-window #terminal-input {
+  background-color: transparent !important;
+  border: none !important;
+  color: #f1f5f9 !important;
+  box-shadow: none !important;
+}
+
+/* 12. Soft Ambient Glows in Light Mode */
+body.light-theme .ambient-glow-1 {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(6, 182, 212, 0.03) 50%, transparent 70%) !important;
+  opacity: 0.7;
+}
+body.light-theme .ambient-glow-2 {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.07) 0%, rgba(99, 102, 241, 0.02) 50%, transparent 70%) !important;
+  opacity: 0.6;
+}
+body.light-theme .ambient-glow-3 {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.07) 0%, rgba(16, 185, 129, 0.02) 50%, transparent 70%) !important;
+  opacity: 0.6;
+}
+
+/* 13. FaceNet Biometrics & Webhook Simulator in Light Mode */
+body.light-theme .vision-grid {
+  background-image: 
+    linear-gradient(rgba(2, 132, 199, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(2, 132, 199, 0.12) 1px, transparent 1px) !important;
+}
+body.light-theme .scan-laser-line {
+  background: linear-gradient(90deg, transparent 5%, #0284c7 30%, #38bdf8 50%, #0284c7 70%, transparent 95%) !important;
+  box-shadow: 0 0 14px 2px rgba(2, 132, 199, 0.7) !important;
+}
+body.light-theme .packet-pulse {
+  background: #2563eb !important;
+  box-shadow: 0 0 10px #3b82f6, 0 0 20px #6366f1 !important;
+}
