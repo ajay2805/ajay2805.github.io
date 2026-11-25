@@ -680,8 +680,8 @@ body.light-theme .bg-indigo-600\/80,
 body.light-theme .bg-blue-600,
 body.light-theme .hover\:bg-blue-600:hover,
 body.light-theme .hover\:bg-indigo-600:hover,
-body.light-theme [class*="from-cyan-500"],
-body.light-theme [class*="from-pink-500"] {
+body.light-theme .bg-gradient-to-r.text-white,
+body.light-theme .bg-gradient-to-tr.text-white {
   color: #ffffff !important;
 }
 
@@ -690,8 +690,8 @@ body.light-theme .bg-indigo-600\/80 *,
 body.light-theme .bg-blue-600 *,
 body.light-theme .hover\:bg-blue-600:hover *,
 body.light-theme .hover\:bg-indigo-600:hover *,
-body.light-theme [class*="from-cyan-500"] *,
-body.light-theme [class*="from-pink-500"] * {
+body.light-theme .bg-gradient-to-r.text-white *,
+body.light-theme .bg-gradient-to-tr.text-white * {
   color: #ffffff !important;
 }
 
