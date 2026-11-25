@@ -474,7 +474,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const data = await res.json().catch(() => ({}));
         if (!res.ok || data.success === false || data.success === 'false') {
-          throw new Error(data.message || 'Failed to send message');
+          const serverMsg = data.message || 'Failed to send message';
+          const err = new Error(serverMsg);
+          err.isActivation = /activat/i.test(serverMsg);
+          throw err;
         }
 
         if (formStatus) {
@@ -501,12 +504,16 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {
         if (formStatus) {
           formStatus.classList.remove('hidden');
+          const title = err.isActivation ? 'Form Activation Required (One-Time)' : 'Could Not Send Automatically';
+          const detail = err.isActivation
+            ? 'FormSubmit sent an "Activate Form" confirmation link to ajajay2805@gmail.com. Once activated, messages deliver automatically.'
+            : escapeHTML(err.message || 'Please send directly using your email app so your message reaches me right away:');
           formStatus.innerHTML = `
             <div class="p-4 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-300 font-mono text-xs sm:text-sm flex items-start gap-3">
               <i class="fa-solid fa-triangle-exclamation text-amber-400 text-lg mt-0.5"></i>
               <div>
-                <p class="font-bold">Could Not Send Automatically</p>
-                <p class="text-xs text-slate-300 mt-1">Please send directly using your email app so your message reaches me right away:</p>
+                <p class="font-bold">${title}</p>
+                <p class="text-xs text-slate-300 mt-1">${detail}</p>
                 <p class="text-xs text-indigo-300 mt-2 font-sans">
                   <a href="${mailtoHref}" class="underline font-semibold">Click here to send via mail client</a>
                 </p>
