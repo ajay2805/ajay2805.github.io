@@ -413,36 +413,80 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 9. CONTACT FORM INTERACTIVE SUBMISSION
+  // 9. CONTACT FORM REAL EMAIL SUBMISSION (FormSubmit AJAX + mailto fallback)
   const contactForm = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const name = contactForm.querySelector('#sender-name')?.value;
-      const email = contactForm.querySelector('#sender-email')?.value;
-      const message = contactForm.querySelector('#sender-message')?.value;
+      const name = contactForm.querySelector('#sender-name')?.value.trim();
+      const email = contactForm.querySelector('#sender-email')?.value.trim();
+      const subject = contactForm.querySelector('#sender-subject')?.value.trim() || `Portfolio Inquiry from ${name}`;
+      const message = contactForm.querySelector('#sender-message')?.value.trim();
 
       if (!name || !email || !message) return;
 
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Transmitting Message...`;
+      const mailtoBody = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+      const mailtoHref = `mailto:ajajay2805@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(mailtoBody)}`;
+
+      if (window.location.protocol === 'file:') {
+        if (formStatus) {
+          formStatus.classList.remove('hidden');
+          formStatus.innerHTML = `
+            <div class="p-4 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-300 font-mono text-xs sm:text-sm flex items-start gap-3">
+              <i class="fa-solid fa-circle-info text-amber-400 text-lg mt-0.5"></i>
+              <div>
+                <p class="font-bold">Local File Preview Mode</p>
+                <p class="text-xs text-slate-300 mt-1">Direct email delivery works once hosted on GitHub Pages (HTTP/HTTPS). For local testing, click below to send via your mail app:</p>
+                <p class="text-xs text-indigo-300 mt-2 font-sans">
+                  <a href="${mailtoHref}" class="underline font-semibold">Open Email Draft to ajajay2805@gmail.com</a>
+                </p>
+              </div>
+            </div>
+          `;
+        }
+        return;
       }
 
-      setTimeout(() => {
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Sending Message...`;
+      }
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/ajajay2805@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            _replyto: email,
+            _subject: subject,
+            message,
+            _template: 'table'
+          })
+        });
+
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data.success === false || data.success === 'false') {
+          throw new Error(data.message || 'Failed to send message');
+        }
+
         if (formStatus) {
           formStatus.classList.remove('hidden');
           formStatus.innerHTML = `
             <div class="p-4 rounded-xl bg-emerald-950/70 border border-emerald-500/40 text-emerald-300 font-mono text-xs sm:text-sm flex items-start gap-3">
               <i class="fa-solid fa-circle-check text-emerald-400 text-lg mt-0.5"></i>
               <div>
-                <p class="font-bold">Message Transmitted Successfully!</p>
-                <p class="text-xs text-slate-300 mt-1">Thank you ${escapeHTML(name)}. Ajay has been alerted and will reach back at <b>${escapeHTML(email)}</b>.</p>
+                <p class="font-bold">Message Sent Successfully!</p>
+                <p class="text-xs text-slate-300 mt-1">Thank you ${escapeHTML(name)}. Your message has been delivered to me, and I will reply to <b>${escapeHTML(email)}</b> soon.</p>
                 <p class="text-xs text-indigo-300 mt-2 font-sans">
-                  Direct Fallback: <a href="mailto:ajajay2805@gmail.com?subject=Regarding Opportunity for Ajay AJ&body=${encodeURIComponent(message)}" class="underline">Click here to send directly via mail client</a>.
+                  Need urgent follow-up? <a href="${mailtoHref}" class="underline">Send via your mail app</a>.
                 </p>
               </div>
             </div>
@@ -454,7 +498,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (window.soundEngine) window.soundEngine.chime();
         contactForm.reset();
-      }, 1200);
+      } catch (err) {
+        if (formStatus) {
+          formStatus.classList.remove('hidden');
+          formStatus.innerHTML = `
+            <div class="p-4 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-300 font-mono text-xs sm:text-sm flex items-start gap-3">
+              <i class="fa-solid fa-triangle-exclamation text-amber-400 text-lg mt-0.5"></i>
+              <div>
+                <p class="font-bold">Could Not Send Automatically</p>
+                <p class="text-xs text-slate-300 mt-1">Please send directly using your email app so your message reaches me right away:</p>
+                <p class="text-xs text-indigo-300 mt-2 font-sans">
+                  <a href="${mailtoHref}" class="underline font-semibold">Click here to send via mail client</a>
+                </p>
+              </div>
+            </div>
+          `;
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane text-xs mr-2"></i><span>Transmit Message to Ajay</span>`;
+        }
+      }
     });
   }
 
